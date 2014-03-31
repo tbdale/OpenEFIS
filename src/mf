@@ -1,0 +1,199 @@
+#############################################################################
+# Makefile for building: test ahrs
+#############################################################################
+
+####### Compiler, tools and options
+
+CC       = gcc
+CXX      = g++
+LEX      = flex
+YACC     = yacc
+CFLAGS   = -pipe -Wall -W -g -march=i386 -mcpu=i686 
+CXXFLAGS = -pipe -Wall -W -g -march=i386 -mcpu=i686
+LEXFLAGS = 
+YACCFLAGS= -d
+INCPATH  = -I$(QTDIR)/mkspecs/default -I. -I$(QTDIR)/include -I/usr/X11R6/include -I/usr/X11R6/include -I.ui/ -I.moc/
+LINK     = g++
+LFLAGS   = 
+LIBS     = $(SUBLIBS) -L/usr/X11R6/lib -L/usr/X11R6/lib -lGLU -lGL -lXmu -lXext -lX11 -lm
+AR       = ar cqs
+RANLIB   = 
+MOC      = $(QTDIR)/bin/moc
+UIC      = $(QTDIR)/bin/uic
+QMAKE    = qmake
+TAR      = tar -cf
+GZIP     = gzip -9f
+COPY     = cp -f
+COPY_FILE= $(COPY) -p
+COPY_DIR = $(COPY) -pR
+DEL_FILE = rm -f
+SYMLINK  = ln -sf
+DEL_DIR  = rmdir
+MOVE     = mv -f
+CHK_DIR_EXISTS= test -d
+MKDIR    = mkdir -p
+
+
+####### Files
+
+HEADERS = efis.h \
+		pfd.h \
+		hsi.h \
+	        serial.h
+SOURCES = airspeed.cpp \
+		airspeed_xplane.cpp \
+		altitude.cpp \
+		ahrs.cpp \
+		ahrs_cooked.cpp \
+		ahrs_xplane.cpp \
+		ahrs_xbow.cpp \
+		fad_fdatasystems.cpp \
+		xpdr_sl70r.cpp \
+		comm_sl40.cpp \
+		adahrs_grtaa301.cpp \
+		autopilot.cpp \
+		autopilot_xplane.cpp \
+		altitude.cpp \
+		compass.cpp \
+		gps.cpp \
+		gps_xplane.cpp \
+		gps_ff.cpp \
+		gps_ff_test.cpp \
+		nav.cpp \
+		nav_xplane.cpp \
+		differentiate.cpp \
+		serial.cpp \
+		shadinZ.cpp \
+		test_main_loop.cpp
+
+OBJECTS = .obj/airspeed.o \
+	.obj/airspeed_xplane.o \
+	.obj/altitude.o \
+	.obj/ahrs.o \
+	.obj/ahrs_cooked.o \
+	.obj/ahrs_xplane.o \
+	.obj/ahrs_xbow.o \
+	.obj/fad_fdatasystems.o \
+	.obj/xpdr_sl70r.o \
+	.obj/comm_sl40.o \
+	.obj/adahrs_grtaa301.o \
+	.obj/autopilot.o \
+	.obj/autopilot_xplane.o \
+	.obj/compass.o \
+	.obj/gps.o \
+	.obj/gps_xplane.o \
+	.obj/gps_ff.o \
+	.obj/nav.o \
+	.obj/nav_xplane.o \
+	.obj/differentiate.o \
+	.obj/serial.o \
+	.obj/shadinZ.o \
+	.obj/test_main_loop.o
+
+FORMS = 
+UICDECLS = 
+UICIMPLS = 
+DESTDIR  = 
+TARGET   = test_avionics
+
+first: all
+####### Implicit rules
+
+.SUFFIXES: .c .cpp .cc .cxx .C
+
+.cpp.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.cc.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.cxx.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.C.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.c.o:
+	$(CC) -c $(CFLAGS) $(INCPATH) -o $@ $<
+
+####### Build rules
+
+all: $(TARGET)
+
+$(TARGET): $(UICDECLS) $(OBJECTS)
+	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJMOC) $(LIBS)
+
+FORCE:
+
+.obj/airspeed.o: airspeed.cpp airspeed.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/airspeed.o airspeed.cpp
+
+.obj/airspeed_xplane.o: airspeed_xplane.cpp airspeed_xplane.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/airspeed_xplane.o airspeed_xplane.cpp
+
+.obj/altitude.o: altitude.cpp altitude.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/altitude.o altitude.cpp
+
+.obj/ahrs.o: ahrs.cpp ahrs.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/ahrs.o ahrs.cpp
+
+.obj/ahrs_cooked.o: ahrs_cooked.cpp ahrs_cooked.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/ahrs_cooked.o ahrs_cooked.cpp
+
+.obj/ahrs_xplane.o: ahrs_xplane.cpp ahrs_xplane.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/ahrs_xplane.o ahrs_xplane.cpp
+
+.obj/ahrs_xbow.o: ahrs_xbow.cpp ahrs_xbow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/ahrs_xbow.o ahrs_xbow.cpp
+
+.obj/fad_fdatasystems.o: fad_fdatasystems.cpp fad_fdatasystems.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/fad_fdatasystems.o fad_fdatasystems.cpp
+
+.obj/xpdr_sl70r.o: xpdr_sl70r.cpp xpdr_sl70r.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/xpdr_sl70r.o xpdr_sl70r.cpp
+
+.obj/comm_sl40.o: comm_sl40.cpp comm_sl40.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/comm_sl40.o comm_sl40.cpp
+
+.obj/adahrs_grtaa301.o: adahrs_grtaa301.cpp adahrs_grtaa301.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/adahrs_grtaa301.o adahrs_grtaa301.cpp
+
+.obj/autopilot.o: autopilot.cpp autopilot.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/autopilot.o autopilot.cpp
+
+.obj/autopilot_xplane.o: autopilot_xplane.cpp autopilot_xplane.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/autopilot_xplane.o autopilot_xplane.cpp
+
+.obj/compass.o: compass.cpp compass.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/compass.o compass.cpp
+
+.obj/gps.o: gps.cpp gps.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/gps.o gps.cpp
+
+.obj/gps_xplane.o: gps_xplane.cpp gps_xplane.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/gps_xplane.o gps_xplane.cpp
+
+.obj/gps_ff.o: gps_ff.cpp gps_ff.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/gps_ff.o gps_ff.cpp
+
+.obj/nav.o: nav.cpp nav.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/nav.o nav.cpp
+
+.obj/nav_xplane.o: nav_xplane.cpp nav_xplane.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/nav_xplane.o nav_xplane.cpp
+
+.obj/test_main_loop.o: test_main_loop.cpp compass_xplane.h altitude_xplane.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/test_main_loop.o test_main_loop.cpp
+
+.obj/serial.o: serial.cpp serial.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/serial.o serial.cpp
+
+.obj/shadinZ.o: shadinZ.cpp shadinZ.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/shadinZ.o shadinZ.cpp
+
+.obj/differentiate.o: differentiate.cpp differentiate.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/differentiate.o differentiate.cpp
+
+
+cots_hardware_test:
+	$(CXX) -g -o cots_hardware_test cots_hardware_test.cpp .obj/ahrs_xbow.o .obj/ahrs.o .obj/fad_fdatasystems.o .obj/adahrs_grtaa301.o .obj/xpdr_sl70r.o .obj/gps_ff.o .obj/gps.o .obj/differentiate.o .obj/comm_sl40.o .obj/shadinZ.o .obj/serial.o

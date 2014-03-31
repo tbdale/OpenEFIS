@@ -1,0 +1,191 @@
+<!DOCTYPE Project SYSTEM "http://www.slickedit.com/dtd/vse/9.1/vpj.dtd">
+<Project
+	Version="9.1"
+	VendorName="SlickEdit"
+	WorkingDir=".">
+	<Config
+		Name="Release"
+		Type="gnuc"
+		DebugCallbackName="gdb"
+		Version="1"
+		OutputFile="%bdefis"
+		CompilerConfigName="Latest Version"
+		ObjectDir="/usr/src/efis/">
+		<Menu>
+			<Target
+				Name="Compile"
+				MenuCaption="&amp;Compile"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				OutputExts="*.o"
+				SaveOption="SaveCurrent"
+				RunFromDir="%rw">
+				<Exec CmdLine='g++ -c %xup %defd -o "%bd%n%oe" %i "%f"'/>
+			</Target>
+			<Target
+				Name="Link"
+				MenuCaption="&amp;Link"
+				ShowOnMenu="Never"
+				Dialog="_gnuc_options_form Link"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveCurrent"
+				RunFromDir="%rw">
+				<Exec CmdLine='g++ %xup -o "%o" %f %libs'/>
+			</Target>
+			<Target
+				Name="Build"
+				MenuCaption="&amp;Build"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw">
+				<Exec CmdLine="make"/>
+			</Target>
+			<Target
+				Name="Rebuild"
+				MenuCaption="&amp;Rebuild"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw">
+				<Exec CmdLine=""/>
+			</Target>
+			<Target
+				Name="Debug"
+				MenuCaption="&amp;Debug"
+				Dialog="_gnuc_options_form Run/Debug"
+				BuildFirst="1"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveNone"
+				RunFromDir="%rw">
+				<Exec CmdLine='vsdebugio -prog "%o"'/>
+			</Target>
+			<Target
+				Name="Execute"
+				MenuCaption="E&amp;xecute"
+				Dialog="_gnuc_options_form Run/Debug"
+				BuildFirst="1"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%o"'/>
+			</Target>
+			<Target
+				Name="dash"
+				MenuCaption="-"
+				Deletable="0">
+				<Exec/>
+			</Target>
+			<Target
+				Name="GNU C Options"
+				MenuCaption="GNU C &amp;Options..."
+				ShowOnMenu="HideIfNoCmdLine"
+				Deletable="0"
+				SaveOption="SaveNone">
+				<Exec
+					CmdLine="gnucoptions"
+					Type="Slick-C"/>
+			</Target>
+		</Menu>
+	</Config>
+	<Files>
+		<Folder
+			Name="Source Files"
+			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl">
+			<F N="adahrs_grtaa301.cpp"/>
+			<F N="ahrs.cpp"/>
+			<F N="ahrs_cooked.cpp"/>
+			<F N="ahrs_xbow.cpp"/>
+			<F N="ahrs_xplane.cpp"/>
+			<F N="airspeed.cpp"/>
+			<F N="airspeed_xplane.cpp"/>
+			<F N="altitude.cpp"/>
+			<F N="autopilot.cpp"/>
+			<F N="autopilot_xplane.cpp"/>
+			<F N="comm_sl40.cpp"/>
+			<F N="compass.cpp"/>
+			<F N="cots_hardware_test.cpp"/>
+			<F N="differentiate.cpp"/>
+			<F N="efis.cpp"/>
+			<F N="eid.cpp"/>
+			<F N="fad_fdatasystems.cpp"/>
+			<F N="gps.cpp"/>
+			<F N="gps_ff.cpp"/>
+			<F N="gps_xplane.cpp"/>
+			<F N="hsi.cpp"/>
+			<F N="init_instruments.cpp"/>
+			<F N="main.cpp"/>
+			<F N=".moc/moc_efis.cpp"/>
+			<F N=".moc/moc_hsi.cpp"/>
+			<F N=".moc/moc_pfd.cpp"/>
+			<F N="nav.cpp"/>
+			<F N="nav_xplane.cpp"/>
+			<F N="pfd.cpp"/>
+			<F N="pfd_ah.cpp"/>
+			<F N="pfd_alt.cpp"/>
+			<F N="pfd_asi.cpp"/>
+			<F N="pfd_vsi.cpp"/>
+			<F N="serial.cpp"/>
+			<F N="shadinZ.cpp"/>
+			<F N="test_aircraft.cpp"/>
+			<F N="test_differentiate.cpp"/>
+			<F N="test_main_loop.cpp"/>
+			<F N="update_instruments.cpp"/>
+			<F N="xpdr_sl70r.cpp"/>
+			<F N="xplane_interface.c"/>
+		</Folder>
+		<Folder
+			Name="Header Files"
+			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.inc;*.sh;*.cpy;*.if">
+			<F N="adahrs_grtaa301.h"/>
+			<F N="ahrs.h"/>
+			<F N="ahrs_cooked.h"/>
+			<F N="ahrs_xbow.h"/>
+			<F N="ahrs_xplane.h"/>
+			<F N="airspeed.h"/>
+			<F N="airspeed_xplane.h"/>
+			<F N="altitude.h"/>
+			<F N="altitude_xplane.h"/>
+			<F N="autopilot.h"/>
+			<F N="autopilot_xplane.h"/>
+			<F N="comm_sl40.h"/>
+			<F N="compass.h"/>
+			<F N="compass_xplane.h"/>
+			<F N="constants.h"/>
+			<F N="differentiate.h"/>
+			<F N="display_interface.h"/>
+			<F N="efis.h"/>
+			<F N="eid.h"/>
+			<F N="exceptions.h"/>
+			<F N="fad_fdatasystems.h"/>
+			<F N="fpm.h"/>
+			<F N="gps.h"/>
+			<F N="gps_ff.h"/>
+			<F N="gps_xplane.h"/>
+			<F N="hsi.h"/>
+			<F N="nav.h"/>
+			<F N="nav_xplane.h"/>
+			<F N="pfd.h"/>
+			<F N="serial.h"/>
+			<F N="shadinZ.h"/>
+			<F N="syntax_error.h"/>
+			<F N="test_aircraft.h"/>
+			<F N="utilities.h"/>
+			<F N="xpdr_sl70r.h"/>
+			<F N="xplane_interface.h"/>
+		</Folder>
+		<Folder
+			Name="Resource Files"
+			Filters="*.ico;*.cur;*.dlg"/>
+		<Folder
+			Name="Bitmaps"
+			Filters="*.bmp"/>
+		<Folder
+			Name="Other Files"
+			Filters=""/>
+	</Files>
+</Project>
